@@ -6,6 +6,7 @@ use App\Http\Controllers\dummyApi;
 use App\Http\Controllers\manodata;
 use App\Http\Controllers\Categorycontroller;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RegistrationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::get("data",[dummyApi::class, 'getData']);
 Route::post("list",[manodata::class, 'list']);
 Route::get("Categories",[Categorycontroller::class, 'list']);
 Route::post("login", [UserController::class, 'index']);
+Route::post("company/register", [RegistrationController::class, 'registeruser']);
