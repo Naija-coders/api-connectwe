@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dummyApi;
 use App\Http\Controllers\manodata;
 use App\Http\Controllers\Categorycontroller;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get("data",[dummyApi::class, 'getData']);
 Route::post("list",[manodata::class, 'list']);
 Route::get("Categories",[Categorycontroller::class, 'list']);
+Route::post("login", [UserController::class, 'index']);
