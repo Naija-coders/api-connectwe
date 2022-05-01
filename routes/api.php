@@ -7,7 +7,8 @@ use App\Http\Controllers\manodata;
 use App\Http\Controllers\Categorycontroller;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegistrationController;
-
+use App\Http\Controllers\getuserprofileController;
+use App\Http\Controllers\LogoutController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,6 +29,7 @@ Route::get("Categories",[Categorycontroller::class, 'list']);
 Route::post("login", [UserController::class, 'index']);
 //for secured routing middleware
 Route::group(["middleware"=>'auth:sanctum'],function(){
-    
+    Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
 });
+Route::get("logout",[LogoutController::class,'performlogout']);
 Route::post("company/register", [RegistrationController::class, 'registeruser']);

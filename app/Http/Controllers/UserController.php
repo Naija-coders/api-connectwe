@@ -19,7 +19,7 @@ class UserController extends Controller
         $token = $user->createToken('auth_token')->plainTextToken;
         $response = [
             'user' => $user,
-            'token'=> $token
+            'auth_token'=> $token
         ];
         return response($response, 201);
     }
