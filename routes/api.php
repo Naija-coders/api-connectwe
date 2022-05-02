@@ -23,6 +23,7 @@ use App\Http\Controllers\LogoutController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::get("data",[dummyApi::class, 'getData']);
 Route::post("list",[manodata::class, 'list']);
 Route::get("Categories",[Categorycontroller::class, 'list']);
