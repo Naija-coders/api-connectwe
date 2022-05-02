@@ -26,7 +26,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get("data",[dummyApi::class, 'getData']);
 Route::post("list",[manodata::class, 'list']);
-Route::get("Categories",[Categorycontroller::class, 'list']);
+Route::get("Categories",[Categorycontroller::class, 'getlist']);
+Route::get("company/categories",[Categorycontroller::class, 'list']);
 Route::post("login", [UserController::class, 'index']);
 //for secured routing middleware
 Route::group(["middleware"=>'auth:sanctum'],function(){

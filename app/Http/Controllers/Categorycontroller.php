@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 class Categorycontroller extends Controller
 {
     //
+    function getlist(){
+        return 
+        category::all();
+    }
     function list(){
         $users = DB::table('Services')
         ->select('users.name', 'users.phone_number', 'users.email', 'Services.services_id', 'Services.image', 'Services.categories_id','Services.location', 'Services.price', 'categories.type', 'categories.job_advertisement')
