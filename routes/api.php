@@ -35,4 +35,4 @@ Route::group(["middleware"=>'auth:sanctum'],function(){
 });
 Route::get("logout",[LogoutController::class,'performlogout']);
 Route::post("company/register", [RegistrationController::class, 'registeruser']);
-//
+//ccc
