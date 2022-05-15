@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class getuserprofileController extends Controller
 {
@@ -13,6 +14,7 @@ class getuserprofileController extends Controller
        return (
         $user_id = DB::table('auth_token')->where('id', $user_token)->first();
          echo $user_id->id;
+         echo $user_name = Auth::user()->name;
        )
 
 
