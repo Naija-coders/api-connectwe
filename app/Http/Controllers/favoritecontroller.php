@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\DB;
 class favoritecontroller extends Controller
 {
     //
+    function getFavorite(Request $request){
+        $user_name = $request->user();
+        $users = DB::table('favorites')
+        ->select('favorites.services_id', 'favorites.id','users.name','services.image','services.price','services.About','services.title','services.location','services.updated_date','services.id')
+        ->join('services', 'services.services_id', 'favorites.services_id' )->join(
+            'users', 'users.id', 'favorites.id'
+        )->where('favorites.id',$user_name->id)->get();
+        return $users;
+        
+
+    }
     function favorite(Request $request){
          $user_name = $request->user();
       

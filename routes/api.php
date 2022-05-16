@@ -34,6 +34,8 @@ Route::post("login", [UserController::class, 'index']);
 Route::group(["middleware"=>'auth:sanctum'],function(){
     Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
     Route::post("favorite", [favoritecontroller::class, 'favorite']);
+    Route::get("user/favorite", [favoritecontroller::class, 'getFavorite']);
+
 });
 Route::get("logout",[LogoutController::class,'performlogout']);
 Route::post("company/register", [RegistrationController::class, 'registeruser']);
