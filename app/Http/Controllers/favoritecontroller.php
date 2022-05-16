@@ -14,13 +14,13 @@ class favoritecontroller extends Controller
     function favorite(Request $request){
          $user_name = $request->user();
       
-         $services_id = $request->services_id;
+         $service_id = $request->services_id;
          
          $users = DB::table('Services')
-         ->select('services_id')->where('services_id',$services_id)->value('services_id');
+         ->select('services_id')->where('services_id',$service_id)->value('services_id');
         $favorite = new favorite();
 
-       
+       //nothing
          $favorite->services_id=$users;
          $favorite->id=$user_name->id;
          
