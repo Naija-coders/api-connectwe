@@ -11,6 +11,7 @@ use App\Http\Controllers\getuserprofileController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\favoritecontroller;
 use App\Http\Controllers\RecommendedController;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,4 @@ Route::get("recommended",[RecommendedController::class,'recommended']);
 Route::get("logout",[LogoutController::class,'performlogout']);
 Route::post("company/register", [RegistrationController::class, 'registeruser']);
 //ccc
+Route::get("company/services", [ServiceController::class, 'Service']);
