@@ -11,8 +11,7 @@ class ServiceController extends Controller
     $service = $request->services_id ;
      
     $users = DB::table('Services')
-    ->select()->
-    where( 'services_id', $service )->get();
+    ->select()->get();
     return $users;
 
    }
