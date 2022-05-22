@@ -10,6 +10,8 @@ use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\getuserprofileController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\favoritecontroller;
+use App\Http\Controllers\RecommendedController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,8 +37,10 @@ Route::group(["middleware"=>'auth:sanctum'],function(){
     Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
     Route::post("favorite", [favoritecontroller::class, 'favorite']);
     Route::get("user/favorite", [favoritecontroller::class, 'getFavorite']);
+    
 
 });
+Route::get("recommended",[RecommendedController::class,'recommended']);
 Route::get("logout",[LogoutController::class,'performlogout']);
 Route::post("company/register", [RegistrationController::class, 'registeruser']);
 //ccc
