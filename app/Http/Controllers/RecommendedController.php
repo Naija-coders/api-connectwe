@@ -15,7 +15,7 @@ class RecommendedController extends Controller
      
         $users = DB::table('Services')
         ->select()
-        ->join('recommendedservices', 'recommendedservices.categories_id', 'Services.categories_id' )->where( 'recommendedservices.categories_id', $categories )->get();
+        ->join('categories', 'categories.categories_id', 'Services.categories_id' )->where( 'categories.categories_id', $categories )->get();
         return $users;
     }
 }
