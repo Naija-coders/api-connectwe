@@ -32,6 +32,7 @@ Route::get("data",[dummyApi::class, 'getData']);
 Route::post("list",[manodata::class, 'list']);
 Route::get("Categories",[Categorycontroller::class, 'getlist']);
 Route::get("company/categories",[Categorycontroller::class, 'list']);
+Route::get("company/allservices",[Categorycontroller::class, 'allservices']);
 Route::post("login", [UserController::class, 'index']);
 //for secured routing middleware
 Route::group(["middleware"=>'auth:sanctum'],function(){
