@@ -18,7 +18,7 @@ class ServiceController extends Controller
       
     $service = $request->services_id ; */
      //please revise this once everythign is fixed
-    $users = DB::table('Services') ->select('Services.services_id, Services.image, Services.location,Services.price,Services.About,Services.title, Services.updated_date, categories.type', 'users.name', 'users.email', 'users.id')->join('categories', 'categories.categories_id', 'Services.categories_id')->join('users', 'users.id', 'Services.id')->get();
+    $users = DB::table('Services') ->select('Services.services_id','Services.categories_id','Services.image','Services.location','Services.price','Services.About','Services.title','Services.updated_date','categories.type','users.name', 'users.email')->join('categories', 'categories.categories_id', 'Services.categories_id')->join('users', 'users.id', 'Services.id')->get();
     
     return $users;
 
