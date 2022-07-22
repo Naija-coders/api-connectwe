@@ -11,26 +11,27 @@ use App\Models\User;
 class RegistrationController extends Controller
 {
     //
-    function registeruser( Request $request){
+    function registeruser(Request $request)
+    {
         $user = new User;
-        $user->name=$request->name;
-        $user->email=$request->email;
-        $user->password= Hash::make($request->password);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
         $result = $user->save();
-        if(!$result){
+        if (!$result) {
+
             return response([
-                'Message'=>['These credential do not match our records']
+                'Message' => ['These credential do not match our records']
             ], 404);
-        }
+        } else {
+            $token = $user->createToken('auth_token')->plainTextToken;
 
+            $response = [
+                'user' => $user,
+                'auth_token' => $token
+            ];
 
-        
-        else{
-            $response = "successfully registered";
-               
-           
             return response($response, 201);
         }
-       
     }
 }
