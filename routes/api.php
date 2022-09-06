@@ -12,7 +12,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\favoritecontroller;
 use App\Http\Controllers\RecommendedController;
 use App\Http\Controllers\ServiceController;
-
+use App\Http\Controllers\GoogleController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -28,22 +28,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("data",[dummyApi::class, 'getData']);
-Route::post("list",[manodata::class, 'list']);
-Route::get("Categories",[Categorycontroller::class, 'getlist']);
-Route::get("company/categories",[Categorycontroller::class, 'list']);
-Route::get("company/allservices",[Categorycontroller::class, 'allservices']);
+Route::get("data", [dummyApi::class, 'getData']);
+Route::post("list", [manodata::class, 'list']);
+Route::get("Categories", [Categorycontroller::class, 'getlist']);
+Route::get("company/categories", [Categorycontroller::class, 'list']);
+Route::get("company/allservices", [Categorycontroller::class, 'allservices']);
 Route::post("login", [UserController::class, 'index']);
 //for secured routing middleware
-Route::group(["middleware"=>'auth:sanctum'],function(){
+Route::group(["middleware" => 'auth:sanctum'], function () {
     Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
     Route::post("favorite", [favoritecontroller::class, 'favorite']);
     Route::get("user/favorite", [favoritecontroller::class, 'getFavorite']);
-    
-
 });
-Route::get("recommended",[RecommendedController::class,'recommended']);
-Route::get("logout",[LogoutController::class,'performlogout']);
+Route::get("recommended", [RecommendedController::class, 'recommended']);
+Route::get("logout", [LogoutController::class, 'performlogout']);
 Route::post("company/register", [RegistrationController::class, 'registeruser']);
 //ccc
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
+
 Route::get("company/services", [ServiceController::class, 'Service']);
