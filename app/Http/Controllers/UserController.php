@@ -13,7 +13,7 @@ class UserController extends Controller
     function googleLogin(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-        if ($request->email_verfied == "true") {
+        if ($request->email_verified == "true") {
             $token = $user->createToken('auth_token')->plainTextToken;
             $response = [
                 'user' => $user,
