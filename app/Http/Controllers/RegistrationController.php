@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\personal_access_token;
 use Illuminate\Http\Client\Response;
 
 
@@ -25,15 +26,12 @@ class RegistrationController extends Controller
                 'Message' => ['These credential do not match our records']
             ], 404);
         } else {
-            $minutes = 360;
+            $token = $user->currentAccessToken('auth_token')->plainTextToken;
 
-            $cookie = new Response('Set Cookie');
-            $cookie->withCookie(cookie('auth_token', $auth_token, $minutes));
             $response = [
                 'user' => $user,
-                'auth_token' => $cookie
+                'auth_token' => $token
             ];
-
 
             return response($response, 201);
         }
@@ -45,17 +43,24 @@ class RegistrationController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $result = $user->save();
+        $token = new personal_access_token;
+
+        $token->name = "auth_token";
+        $token->token = $request->access_token;
+
+        $token_result = $token->save();
+
         if (!$result) {
 
             return response([
                 'Message' => ['These credential do not match our records']
             ], 404);
         } else {
-            $token = $user->createToken('auth_token')->plainTextToken;
+
 
             $response = [
                 'user' => $user,
-                'auth_token' => $token
+                'auth_token' => $token_result
             ];
 
             return response($response, 201);
