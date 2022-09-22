@@ -44,7 +44,7 @@ Route::group(["middleware" => 'auth:sanctum'], function () {
 Route::get("recommended", [RecommendedController::class, 'recommended']);
 Route::get("logout", [LogoutController::class, 'performlogout']);
 Route::post("company/register", [RegistrationController::class, 'registeruser']);
-Route::post("company/googleregister", [RegistrationController::class, 'googleLogin']);
+Route::post("company/googleregister", [RegistrationController::class, 'googleRegister']);
 //ccc
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
