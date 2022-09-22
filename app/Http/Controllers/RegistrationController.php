@@ -23,7 +23,7 @@ class RegistrationController extends Controller
         $token = new personal_access_token;
 
         $token->name = "auth_token";
-        $token->token = $request->access_token->plainTextToken;
+        $token->token = $request->access_token;
 
         $result = $user->save();
         $token_result = $token->save();
