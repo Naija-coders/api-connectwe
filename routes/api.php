@@ -34,6 +34,7 @@ Route::get("Categories", [Categorycontroller::class, 'getlist']);
 Route::get("company/categories", [Categorycontroller::class, 'list']);
 Route::get("company/allservices", [Categorycontroller::class, 'allservices']);
 Route::post("login", [UserController::class, 'index']);
+Route::post("googlelogin", [UserController::class, 'googleLogin']);
 //for secured routing middleware
 Route::group(["middleware" => 'auth:sanctum'], function () {
     Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
