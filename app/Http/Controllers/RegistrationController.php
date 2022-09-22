@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
-use App\Models\personal_access_token;
-use Illuminate\Http\Client\Response;
+
+
 
 
 class RegistrationController extends Controller
@@ -20,23 +20,20 @@ class RegistrationController extends Controller
         $user->email = $request->email;
         $user->photo_url = $request->picture;
 
-        $token = new personal_access_token;
 
-        $token->name = "auth_token";
-        $token->token = $request->access_token;
 
         $result = $user->save();
-        $token_result = $token->save();
+
         if (!$result) {
             return response([
                 'Message' => ['These credential do not match our records']
             ], 404);
         } else {
-            $token = $user->currentAccessToken('auth_token')->plainTextToken;
+            $token = $user->createToken('auth_token')->plainTextToken;
 
             $response = [
                 'user' => $user,
-                'auth_token' => $token_result
+                'auth_token' => $token
             ];
 
             return response($response, 201);
