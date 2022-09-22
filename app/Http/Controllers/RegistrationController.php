@@ -13,30 +13,39 @@ use App\Models\User;
 class RegistrationController extends Controller
 {
     //
-    function googleLogin(Request $request)
+    function googleRegister(Request $request)
     {
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->photo_url = $request->picture;
+        $user = User::where('email', $request->email)->first();
+        if (!$user) {
+            $user = new User;
+
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->photo_url = $request->picture;
 
 
 
-        $result = $user->save();
 
-        if (!$result) {
-            return response([
-                'Message' => ['These credential do not match our records']
-            ], 404);
+            $result = $user->save();
+
+            if (!$result) {
+                return response([
+                    'Message' => ['These credential do not match our records']
+                ], 404);
+            } else {
+                $token = $user->createToken('auth_token')->plainTextToken;
+
+                $response = [
+                    'user' => $user,
+                    'auth_token' => $token
+                ];
+
+                return response($response, 201);
+            }
         } else {
-            $token = $user->createToken('auth_token')->plainTextToken;
-
-            $response = [
-                'user' => $user,
-                'auth_token' => $token
-            ];
-
-            return response($response, 201);
+            return response([
+                'Message' => ['User already exist']
+            ], 404);
         }
     }
     function registeruser(Request $request)
