@@ -19,8 +19,14 @@ class RegistrationController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->photo_url = $request->picture;
-        $auth_token = $request->access_token;
+
+        $token = new personal_access_token;
+
+        $token->name = "auth_token";
+        $token->token = $request->access_token->plainTextToken;
+
         $result = $user->save();
+        $token_result = $token->save();
         if (!$result) {
             return response([
                 'Message' => ['These credential do not match our records']
@@ -30,7 +36,7 @@ class RegistrationController extends Controller
 
             $response = [
                 'user' => $user,
-                'auth_token' => $token
+                'auth_token' => $token_result
             ];
 
             return response($response, 201);
@@ -43,24 +49,17 @@ class RegistrationController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $result = $user->save();
-        $token = new personal_access_token;
-
-        $token->name = "auth_token";
-        $token->token = $request->access_token->plainTextToken;
-
-        $token_result = $token->save();
-
         if (!$result) {
 
             return response([
                 'Message' => ['These credential do not match our records']
             ], 404);
         } else {
-
+            $token = $user->createToken('auth_token')->plainTextToken;
 
             $response = [
                 'user' => $user,
-                'auth_token' => $token_result
+                'auth_token' => $token
             ];
 
             return response($response, 201);
