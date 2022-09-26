@@ -122,7 +122,7 @@ class RegistrationController extends Controller
             $business->id = $user->id;
             $business->agency_name = $user->name;
             $business->agency_size = $request->agency_size;
-
+            $business->email = $request->email;
             $business->location = $request->location;
             $business->save();
             $response = [
@@ -155,6 +155,7 @@ class RegistrationController extends Controller
             $business->company_size = $request->company_size;
             $business->is_business = 1;
             $business->location = $request->location;
+            $business->email = $request->email;
             $business->save();
             $response = [
                 'user' => $user,
