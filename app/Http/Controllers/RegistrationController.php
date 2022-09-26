@@ -87,7 +87,7 @@ class RegistrationController extends Controller
             $token = $user->createToken('auth_token')->plainTextToken;
 
             $business = new businesses;
-            $business = businesses::where('id', $user->id)->first();
+
             $business->id = $user->id;
             $business->company_name = $user->name;
             $business->company_size = $request->company_size;
