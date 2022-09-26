@@ -46,7 +46,8 @@ Route::get("logout", [LogoutController::class, 'performlogout']);
 Route::post("company/register", [RegistrationController::class, 'registeruser']);
 Route::post("company/googleregister", [RegistrationController::class, 'googleRegister']);
 Route::post("business/companyregister", [RegistrationController::class, 'companyRegister']);
-
+Route::post("business/agencyregister", [RegistrationController::class, 'agencyRegistration']);
+Route::post("business/contractorregister", [RegistrationController::class, 'contractorRegistration']);
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
