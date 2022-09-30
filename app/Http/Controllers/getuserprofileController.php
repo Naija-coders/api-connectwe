@@ -10,12 +10,12 @@ use Illuminate\Support\Facades\DB;
 class getuserprofileController extends Controller
 {
   //
-  function getusersprofile(Request $req)
+  function getusersprofile(Request $request)
   {
 
 
 
-    $user = Auth::user();
+    $user =  $request->user();
     if ($user) {
       return response()->json($user, 200);
     }
