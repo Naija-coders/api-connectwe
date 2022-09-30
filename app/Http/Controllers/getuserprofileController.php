@@ -15,9 +15,6 @@ class getuserprofileController extends Controller
 
 
 
-    $user =  $request->user();
-    if ($user) {
-      return response()->json($user, 200);
-    }
+    return $user =  $request->user();
   }
 }
