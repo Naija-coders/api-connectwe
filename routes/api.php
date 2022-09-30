@@ -41,7 +41,16 @@ Route::group(["middleware" => 'auth:sanctum'], function () {
     Route::post("favorite", [favoritecontroller::class, 'favorite']);
     Route::get("user/favorite", [favoritecontroller::class, 'getFavorite']);
 });
-Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile'])->middleware('auth');
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::post("favorite", [favoritecontroller::class, 'favorite']);
+    Route::get("user/favorite", [favoritecontroller::class, 'getFavorite']);
+    Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
+});
+
 
 Route::get("recommended", [RecommendedController::class, 'recommended']);
 Route::get("logout", [LogoutController::class, 'performlogout']);
