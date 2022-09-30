@@ -37,10 +37,12 @@ Route::post("login", [UserController::class, 'index']);
 Route::post("googlelogin", [UserController::class, 'googleLogin']);
 //for secured routing middleware
 Route::group(["middleware" => 'auth:sanctum'], function () {
-    Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
+
     Route::post("favorite", [favoritecontroller::class, 'favorite']);
     Route::get("user/favorite", [favoritecontroller::class, 'getFavorite']);
 });
+Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile'])->middleware('auth');
+
 Route::get("recommended", [RecommendedController::class, 'recommended']);
 Route::get("logout", [LogoutController::class, 'performlogout']);
 Route::post("company/register", [RegistrationController::class, 'registeruser']);

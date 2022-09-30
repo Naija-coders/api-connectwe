@@ -15,6 +15,9 @@ class getuserprofileController extends Controller
 
 
 
-    return $user =  $request->user();
+    return $user = Auth::user();
+
+    // Retrieve the currently authenticated user's ID...
+
   }
 }
