@@ -33,6 +33,7 @@ class ProjectsController extends Controller
             $prices = new Prices;
             $prices->currency = $request->currency;
             $prices->price = $request->price;
+            $prices->user_id = $userid;
             $prices->save();
 
             $tags->save();
