@@ -50,7 +50,7 @@ Route::middleware([
     Route::post("favorite", [favoritecontroller::class, 'favorite']);
     Route::get("user/favorite", [favoritecontroller::class, 'getFavorite']);
     Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
-    Route::post("projectupdate", [getuserprofileController::class, 'myprojects']);
+    Route::post("projectupdate", [ProjectsController::class, 'myprojects']);
 });
 
 
