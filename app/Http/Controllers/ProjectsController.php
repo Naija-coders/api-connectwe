@@ -30,7 +30,7 @@ class ProjectsController extends Controller
             $tags->tag_name = $request->tag_name;
             $tags->categories_id = $categories->id;
             $tags->save();
-            $tagstype = Tags::where('tag_name', $request->type)->first();
+            $tagstype = Tags::where('tag_name', $request->tag_name)->first();
             if ($tagstype) {
                 $project->tags_id = $tagstype->id;
                 $result =   $project->save();
