@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Projects;
 use App\Models\Tags;
 use App\Models\categories;
+use App\Models\Prices;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class ProjectsController extends Controller
@@ -29,21 +30,29 @@ class ProjectsController extends Controller
             $project->categories_id = $categories->id;
             $tags->tag_name = $request->tag_name;
             $tags->categories_id = $categories->id;
+            $prices = new Prices;
+            $prices->currency = $request->currency;
+            $prices->price = $request->price;
+            $prices->save();
+
             $tags->save();
             $tagstype = Tags::where('tag_name', $request->tag_name)->first();
             if ($tagstype) {
                 $project->tags_id = $tagstype->id;
-                $result =   $project->save();
-                if (!$result) {
+                if ($prices) {
+                    $project->price_id = $prices->id;
+                    $result =   $project->save();
+                    if (!$result) {
 
-                    return response([
-                        'Message' => ['These credential do not match our records']
-                    ], 404);
-                } else {
-                    $response = [
-                        'projects' => $project
-                    ];
-                    return response($response, 201);
+                        return response([
+                            'Message' => ['These credential do not match our records']
+                        ], 404);
+                    } else {
+                        $response = [
+                            'projects' => $project
+                        ];
+                        return response($response, 201);
+                    }
                 }
             } else {
                 return response([
