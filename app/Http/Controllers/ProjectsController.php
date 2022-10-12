@@ -20,7 +20,8 @@ class ProjectsController extends Controller
             $userid = $user->id;
             $project = new Projects;
             $tags = new Tags;
-            $categories = new categories;
+
+
             $project->title = $request->title;
             $project->overview = $request->overview;
             $project->location = $request->location;
