@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('location');
             $table->foreignId('price_id')->references('id')->on('prices')->onDelete('cascade');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('privacy');
             $table->timestamps();
         });
     }
