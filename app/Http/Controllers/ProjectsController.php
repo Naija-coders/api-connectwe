@@ -29,7 +29,7 @@ class ProjectsController extends Controller
             $project->location_type = $request->location_type;
             $project->categories_id = $categories->id;
             $project->user_id = $userid;
-            $project->privacy = $request->privacy;
+            $project->privacy = "private";
             $tags->tag_name = $request->tag_name;
             $tags->categories_id = $categories->id;
             $prices = new Prices;
