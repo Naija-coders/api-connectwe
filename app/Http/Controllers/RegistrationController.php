@@ -88,7 +88,7 @@ class RegistrationController extends Controller
 
             $business = new businesses;
 
-            $business->id = $user->id;
+            $business->user_id = $user->id;
             $business->company_name = $user->name;
             $business->company_size = $request->company_size;
             $business->is_business = 1;
@@ -119,7 +119,7 @@ class RegistrationController extends Controller
 
             $business = new agencies();
 
-            $business->id = $user->id;
+            $business->user_id = $user->id;
             $business->agency_name = $user->name;
             $business->agency_size = $request->agency_size;
             $business->email = $request->email;
