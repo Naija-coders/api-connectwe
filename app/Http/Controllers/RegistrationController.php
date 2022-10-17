@@ -105,7 +105,7 @@ class RegistrationController extends Controller
     function agencyRegistration(Request $request)
     {
         $user = new User();
-        $user->name = $request->company_name;
+        $user->name = $request->agency_name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $result = $user->save();
