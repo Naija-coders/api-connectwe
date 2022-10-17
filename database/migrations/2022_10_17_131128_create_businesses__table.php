@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('agencies', function (Blueprint $table) {
+        Schema::create('businesses', function (Blueprint $table) {
             $table->id();
-            $table->string('agency_name', 225);
+            $table->string('company_name', 225);
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('email');
-            $table->string('agency_size');
-            $table->string('about');
-            $table->string('phone_number');
-            $table->string('location');
+            $table->string('company_size');
+            $table->string('about')->default('');
+            $table->string('phone_number')->default('');
+            $table->string('location')->default('');
             $table->timestamps();
         });
     }
@@ -33,6 +32,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('agencies');
+
+        Schema::dropIfExists('businesses');
     }
 };

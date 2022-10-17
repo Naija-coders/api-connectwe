@@ -91,7 +91,6 @@ class RegistrationController extends Controller
             $business->user_id = $user->id;
             $business->company_name = $user->name;
             $business->company_size = $request->company_size;
-            $business->is_business = 1;
             $business->location = $request->location;
             $business->save();
             $response = [
