@@ -108,6 +108,8 @@ class RegistrationController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $result = $user->save();
+        $sendverification = $user->sendEmailVerificationNotification();
+
         if (!$result) {
 
             return response([
@@ -115,7 +117,7 @@ class RegistrationController extends Controller
             ], 404);
         } else {
             $token = $user->createToken('auth_token')->plainTextToken;
-
+            $sendverification;
             $business = new agencies();
 
             $business->user_id = $user->id;
