@@ -30,6 +30,7 @@ class ServiceController extends Controller
             $services->privacy = "private";
             $services->pitch = $request->pitch;
             $services->website_url = $request->website_url;
+            $services->user_id = $userid;
             $tags->tag_name = $request->tag_name;
             $tags->categories_id = $categories->id;
             $prices = new Service_prices();
