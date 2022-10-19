@@ -23,7 +23,8 @@ return new class extends Migration
             $table->foreignId('likes_id')->references('id')->on('likes')->onDelete('cascade');
             $table->string('overview')->default('');
             $table->string('description')->default('');
-            $table->string('price')->default('');
+            $table->string('delivery_time')->default('');
+            $table->foreignId('price_id')->references('id')->on('service_prices')->onDelete('cascade');
 
             $table->timestamps();
         });
