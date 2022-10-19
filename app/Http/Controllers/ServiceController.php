@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\categories;
 use App\Models\Images;
+use App\Models\ratings;
 use App\Models\service;
 use App\Models\Service_prices;
 use App\Models\Tags;
@@ -36,6 +37,9 @@ class ServiceController extends Controller
             $prices->price = $request->price;
             $prices->user_id = $userid;
             $images = new Images();
+
+
+
             $prices->save();
 
             $tags->save();
@@ -45,6 +49,7 @@ class ServiceController extends Controller
                 if ($prices) {
                     $services->price_id = $prices->id;
                     $images->image_url = $request->image_url;
+                    $images->save();
                     $imagestring = Images::where("image_url", $request->image_url)->first();
                     if ($imagestring) {
                         $services->images_id = $imagestring->id;
@@ -60,6 +65,10 @@ class ServiceController extends Controller
                             ];
                             return response($response, 201);
                         }
+                    } else {
+                        return response([
+                            'Message' => ['Please enter tags']
+                        ], 404);
                     }
                 }
             } else {
