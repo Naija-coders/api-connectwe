@@ -47,6 +47,7 @@ class ServiceController extends Controller
                     $images->image_url = $request->image_url;
                     $imagestring = Images::where("image_url", $request->image_url)->first();
                     if ($imagestring) {
+                        $services->images_id = $imagestring->id;
                         $result =   $services->save();
                         if (!$result) {
 
