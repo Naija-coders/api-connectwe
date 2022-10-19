@@ -24,6 +24,9 @@ return new class extends Migration
             $table->string('overview')->default('');
             $table->string('description')->default('');
             $table->string('delivery_time')->default('');
+            $table->string('privacy')->default('');
+            $table->string('pitch')->default('');
+            $table->string('website_url')->default('');
             $table->foreignId('price_id')->references('id')->on('service_prices')->onDelete('cascade');
 
             $table->timestamps();

@@ -14,6 +14,7 @@ use App\Http\Controllers\RecommendedController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProjectsController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -51,6 +52,7 @@ Route::middleware([
     Route::get("user/favorite", [favoritecontroller::class, 'getFavorite']);
     Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
     Route::post("projectupdate", [ProjectsController::class, 'myprojects']);
+    Route::post("serviceupdate", [ServiceController::class, 'PostServices']);
 });
 
 
