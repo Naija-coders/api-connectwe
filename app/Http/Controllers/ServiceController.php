@@ -29,7 +29,6 @@ class ServiceController extends Controller
             $services->categories_id = $categories->id;
             $services->privacy = "private";
             $services->pitch = $request->pitch;
-            $services->website_url = $request->website_url;
             $services->users_id = $userid;
             $tags->tag_name = $request->tag_name;
             $tags->categories_id = $categories->id;
