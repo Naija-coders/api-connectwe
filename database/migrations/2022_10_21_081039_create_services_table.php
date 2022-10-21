@@ -25,7 +25,8 @@ return new class extends Migration
             $table->string('privacy')->default('');
             $table->string('pitch')->default('');
             $table->foreignId('price_id')->references('id')->on('service_prices')->onDelete('cascade');
-
+            $table->string('location_type');
+            $table->string('location');
             $table->timestamps();
         });
     }
