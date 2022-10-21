@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('tags_id')->references('id')->on('tags')->onDelete('cascade');
             $table->string('overview')->default('');
-            $table->string('description')->default('');
             $table->string('delivery_time')->default('');
             $table->string('privacy')->default('');
             $table->string('pitch')->default('');
