@@ -26,7 +26,7 @@ class ServiceController extends Controller
             $services->overview = $request->overview;
             $services->description = $request->description;
             $services->delivery_time = $request->delivery_time;
-            $services->categories_id = $request->categories_id;
+            $services->categories_id = $categories->id;
             $services->privacy = "private";
             $services->pitch = $request->pitch;
             $services->website_url = $request->website_url;

@@ -19,8 +19,6 @@ return new class extends Migration
             $table->foreignId('images_id')->references('id')->on('images')->onDelete('cascade');
             $table->foreignId('users_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('tags_id')->references('id')->on('tags')->onDelete('cascade');
-            $table->foreignId('ratings_id')->references('id')->on('ratings')->onDelete('cascade');
-            $table->foreignId('likes_id')->references('id')->on('likes')->onDelete('cascade');
             $table->string('overview')->default('');
             $table->string('description')->default('');
             $table->string('delivery_time')->default('');
