@@ -30,6 +30,8 @@ class ServiceController extends Controller
             $services->privacy = "private";
             $services->pitch = $request->pitch;
             $services->users_id = $userid;
+            $services->location = $request->location;
+            $services->location_type = $request->location_type;
             $tags->tag_name = $request->tag_name;
             $tags->categories_id = $categories->id;
             $prices = new Service_prices();
@@ -37,6 +39,7 @@ class ServiceController extends Controller
             $prices->price = $request->price;
             $prices->user_id = $userid;
             $images = new Images();
+
 
 
 
