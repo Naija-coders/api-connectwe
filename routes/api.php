@@ -67,3 +67,5 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback']);
 
 Route::get("company/services", [ServiceController::class, 'Service']);
+
+Route::get("company/exploreservices", [ServiceController::class, 'ExplorePaginated']);

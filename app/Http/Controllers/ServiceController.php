@@ -84,6 +84,11 @@ class ServiceController extends Controller
             ], 404);
         }
     }
+    function ExplorePaginated(Request $request)
+    {
+        $service = DB::table('services')->select('services.*', 'images.image_url', 'users.name', 'users.profile_photo_path', 'tags.tag_name', 'categories.type', 'service_prices.currency', 'service_prices.price')->join('categories', 'categories.id', 'services.categories_id')->join('images', 'images.id', 'services.images_id')->join('users', 'users.id', 'services.users_id')->join('tags', 'tags.id', 'services.tags_id')->join('service_prices', 'service_prices.id', 'services.price_id')->get();
+        return $service::paginate(12);
+    }
     function Service(Request $request)
     {
         /*     $user_name = $request->user();
