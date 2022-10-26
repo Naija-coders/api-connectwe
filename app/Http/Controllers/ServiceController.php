@@ -102,7 +102,8 @@ class ServiceController extends Controller
     $service = $request->services_id ; */
         //please revise this once everythign is fixed
         $service = DB::table('services')->select('services.*', 'images.image_url', 'users.name', 'users.profile_photo_path', 'tags.tag_name', 'categories.type', 'service_prices.currency', 'service_prices.price')->join('categories', 'categories.id', 'services.categories_id')->join('images', 'images.id', 'services.images_id')->join('users', 'users.id', 'services.users_id')->join('tags', 'tags.id', 'services.tags_id')->join('service_prices', 'service_prices.id', 'services.price_id')->get();
-        return $service;
+        $records = collect($service)->slice(0, 8)->all();
+        return $records;
         /*    $users = DB::table('Services')->select('Services.services_id', 'Services.categories_id', 'Services.image', 'Services.location', 'Services.price', 'Services.About', 'Services.title', 'Services.updated_date', 'categories.type', 'users.name', 'users.email')->join('categories', 'categories.categories_id', 'Services.categories_id')->join('users', 'users.id', 'Services.id')->get();
 
         return $users;
