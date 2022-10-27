@@ -54,8 +54,8 @@ Route::middleware([
     Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
     Route::post("projectupdate", [ProjectsController::class, 'myprojects']);
     Route::post("serviceupdate", [ServiceController::class, 'PostServices']);
-    /*   Route::post("likepost", [ServiceslikesController::class, 'Likes']);
-    Route::post("unlikepost", [ServiceslikesController::class, 'UnLike']);  */
+    Route::post("likepost", [ServiceslikesController::class, 'Likes']);
+    Route::post("unlikepost", [ServiceslikesController::class, 'UnLike']);
 });
 
 
