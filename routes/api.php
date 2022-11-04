@@ -57,7 +57,7 @@ Route::middleware([
     Route::post("likepost", [ServiceslikesController::class, 'Likes']);
     Route::post("unlikepost", [ServiceslikesController::class, 'UnLike']);
 });
-Route::get("subcategory", [ServiceController::class, 'ExplorePaginatedSubcategory']);
+Route::post("subcategory", [ServiceController::class, 'ExplorePaginatedSubcategory']);
 
 Route::get("recommended", [RecommendedController::class, 'recommended']);
 Route::get("logout", [LogoutController::class, 'performlogout']);
