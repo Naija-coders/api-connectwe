@@ -14,6 +14,7 @@ use App\Http\Controllers\RecommendedController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\ProjectsController;
+use App\Http\Controllers\ServiceslikesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,8 +54,10 @@ Route::middleware([
     Route::get("getuserprofile", [getuserprofileController::class, 'getusersprofile']);
     Route::post("projectupdate", [ProjectsController::class, 'myprojects']);
     Route::post("serviceupdate", [ServiceController::class, 'PostServices']);
+    Route::post("likepost", [ServiceslikesController::class, 'Likes']);
+    Route::post("unlikepost", [ServiceslikesController::class, 'UnLike']);
 });
-
+Route::post("subcategory", [ServiceController::class, 'ExplorePaginatedSubcategory']);
 
 Route::get("recommended", [RecommendedController::class, 'recommended']);
 Route::get("logout", [LogoutController::class, 'performlogout']);
