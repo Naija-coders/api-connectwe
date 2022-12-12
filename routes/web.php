@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\GoogleController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+if(\Illuminate\Support\Facades\App::environment('local')){
+    Route::get('/playground', function (){
+        $user = App\Models\User::factory()->make();
+        \Illuminate\Support\Facades\Mail::to($user)
+        ->send(new \App\Mail\welcomeEmail($user));
+        return null;
+
+    });
+}
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -30,4 +41,5 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('https://business.elverr.com/');
     })->name('dashboard');
+
 });
